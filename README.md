@@ -1,5 +1,5 @@
 bCarControl
-- RAID V4.5'a özel olarak yapılan Nopixel Car Control scriptinden ilham alınarak yapılan script artık ücretsizdir.
+- RAID V4.5'a özel olarak yapılan, yapımı için nopixelden esinlenilen car control scriptidir.
 - Old / New QBCore
 - UI Dizaynı b. (FerZom) tarafından yapıldı.
 
