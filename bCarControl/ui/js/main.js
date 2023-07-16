@@ -1,1 +1,40 @@
-const _0x1d0cd8=_0x313c;(function(_0x30ce6d,_0x57aa8b){const _0x2baefb=_0x313c,_0x395d78=_0x30ce6d();while(!![]){try{const _0x24e931=parseInt(_0x2baefb(0x107))/0x1+parseInt(_0x2baefb(0xec))/0x2+-parseInt(_0x2baefb(0xf1))/0x3*(-parseInt(_0x2baefb(0x108))/0x4)+-parseInt(_0x2baefb(0xf2))/0x5*(parseInt(_0x2baefb(0xee))/0x6)+parseInt(_0x2baefb(0xfe))/0x7*(-parseInt(_0x2baefb(0xf4))/0x8)+-parseInt(_0x2baefb(0xed))/0x9+-parseInt(_0x2baefb(0xfd))/0xa;if(_0x24e931===_0x57aa8b)break;else _0x395d78['push'](_0x395d78['shift']());}catch(_0x2291c2){_0x395d78['push'](_0x395d78['shift']());}}}(_0x203b,0xa2278),window['addEventListener'](_0x1d0cd8(0x106),_0x13761b=>{const _0x590e53=_0x1d0cd8;if(_0x13761b['data'][_0x590e53(0xfa)]===_0x590e53(0xf0))$('.cammenu')[_0x590e53(0xef)](),$(_0x590e53(0x105))[_0x590e53(0xef)](),$(_0x590e53(0xf6))[_0x590e53(0xef)](),$(_0x590e53(0x104))[_0x590e53(0xef)]();else{if(_0x13761b['data']['type']===_0x590e53(0x10b))close();else{if(_0x13761b['data'][_0x590e53(0xfa)]===_0x590e53(0x103)){let _0x41d220=_0x13761b['data'][_0x590e53(0xfc)];for(x in _0x41d220){changeStatus(x,_0x41d220[x]);}}}}}));function _0x203b(){const _0x4d1540=['7315632CdoxYS','300SJRZsG','fadeIn','open','3xbHYhm','38465PzLfcN','http://bCarControl/set','8lhROaA','stringify','.koltukmenu','click','\x20.button-cizgi','removeClass','type','fadeOut','data','2902480GHKAZS','2379097TPIrZa','http://bCarControl/kapat','addClass','post','.cammenu','update','.ana','.kapimenu','message','498498gMrpcS','3170564OtXWgH','.button','aktif','close','pasif','2401324FAgcnD'];_0x203b=function(){return _0x4d1540;};return _0x203b();}function changeStatus(_0x91efbe,_0x537d54){const _0x1b88fe=_0x1d0cd8;if(_0x537d54==_0x1b88fe(0x10c))$('#'+_0x91efbe+'\x20.button-cizgi')[_0x1b88fe(0x100)](_0x1b88fe(0x10c)),$('#'+_0x91efbe+'\x20.button-cizgi')[_0x1b88fe(0xf9)](_0x1b88fe(0x10a));else _0x537d54?($('#'+_0x91efbe+'\x20.button-cizgi')[_0x1b88fe(0x100)](_0x1b88fe(0x10a)),$('#'+_0x91efbe+_0x1b88fe(0xf8))[_0x1b88fe(0xf9)](_0x1b88fe(0x10c))):($('#'+_0x91efbe+_0x1b88fe(0xf8))[_0x1b88fe(0xf9)](_0x1b88fe(0x10a)),$('#'+_0x91efbe+_0x1b88fe(0xf8))[_0x1b88fe(0xf9)](_0x1b88fe(0x10c)));}function close(){const _0x6e27a3=_0x1d0cd8;$(_0x6e27a3(0x102))['fadeOut'](),$(_0x6e27a3(0x105))['fadeOut'](),$(_0x6e27a3(0xf6))[_0x6e27a3(0xfb)](),$(_0x6e27a3(0x104))[_0x6e27a3(0xfb)](),$[_0x6e27a3(0x101)](_0x6e27a3(0xff));}function _0x313c(_0x1565d8,_0x91c518){const _0x203b70=_0x203b();return _0x313c=function(_0x313c9f,_0x13aa6a){_0x313c9f=_0x313c9f-0xec;let _0x54ef92=_0x203b70[_0x313c9f];return _0x54ef92;},_0x313c(_0x1565d8,_0x91c518);}$(document)['on'](_0x1d0cd8(0xf7),_0x1d0cd8(0x109),function(){const _0x158dbf=_0x1d0cd8;$[_0x158dbf(0x101)](_0x158dbf(0xf3),JSON[_0x158dbf(0xf5)]({'tip':this['id']}));});
+window.addEventListener('message', (event) => {
+    if (event.data.type === 'open') {
+        $(".cammenu").fadeIn();
+        $(".kapimenu").fadeIn();
+        $(".koltukmenu").fadeIn();
+        $(".ana").fadeIn();
+    } else if (event.data.type === 'close') {
+        close();
+    } else if (event.data.type === 'update') {
+        let data = event.data.data
+        for (x in data) {
+            changeStatus(x, data[x])
+        }
+    }
+});
+
+function changeStatus(dclass, status) {
+    if (status == "pasif") {
+        $("#"+dclass+" .button-cizgi").addClass("pasif");
+        $("#"+dclass+" .button-cizgi").removeClass("aktif");
+    } else if (status) {
+        $("#"+dclass+" .button-cizgi").addClass("aktif");
+        $("#"+dclass+" .button-cizgi").removeClass("pasif");
+    } else {
+        $("#"+dclass+" .button-cizgi").removeClass("aktif");
+        $("#"+dclass+" .button-cizgi").removeClass("pasif");
+    }
+}
+
+function close() {
+    $(".cammenu").fadeOut();
+    $(".kapimenu").fadeOut();
+    $(".koltukmenu").fadeOut();
+    $(".ana").fadeOut();
+    $.post('http://bCarControl/kapat')
+}
+
+$(document).on("click", ".button", function() {
+    $.post('http://bCarControl/set', JSON.stringify({tip: this.id}));
+});
