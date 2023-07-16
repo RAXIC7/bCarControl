@@ -1,4 +1,5 @@
 QBCore = exports['qb-core']:GetCoreObject()
+
 local HasNuiFocus = false
 
 AddEventHandler('onResourceStop', function(resourceName)
@@ -6,7 +7,6 @@ AddEventHandler('onResourceStop', function(resourceName)
         SetCustomNuiFocus(false, false)
     end
 end)
-
 
 RegisterNUICallback('kapat', function(data, cb)
     Citizen.Wait(100)
@@ -18,21 +18,14 @@ AddEventHandler('bCarControl:open', function(hasFocus, hasKeyboard, hasMouse, al
     Citizen.Wait(100)
     SendNUIMessage({type = "open"})
     SetCustomNuiFocus(true, true)
-    QBCore.Functions.Notify('Araç Etkileşim Menüsü Açıldı. "ESC" veya "BACKSPACE" Tuşları İle Menüyü Kapatabilirsin.', "info")
-end)
+    QBCore.Functions.Notify('Araç Etkileşim Menüsü Açıldı. "ESC" veya "BACKSPACE" Tuşları İle Menüyü Kapatabilirsin.', "primary")
 
-RegisterCommand("carcontrol", function()
-    Citizen.Wait(100)
-    SendNUIMessage({type = "open"})
-    SetCustomNuiFocus(true, true)
-    QBCore.Functions.Notify('Araç Etkileşim Menüsü Açıldı. "ESC" veya "BACKSPACE" Tuşları İle Menüyü Kapatabilirsin.', "info")
 end)
 
 function SetCustomNuiFocus(hasKeyboard, hasMouse)
     HasNuiFocus = hasKeyboard or hasMouse
     SetNuiFocus(hasKeyboard, hasMouse)
     SetNuiFocusKeepInput(HasNuiFocus)
-    TriggerEvent("tgiann-menuv3:nui-focus", HasNuiFocus, hasKeyboard, hasMouse, true)
 end
 
 local checkCar = true
@@ -107,7 +100,7 @@ Citizen.CreateThread(function()
                 SendNUIMessage({type = "close"})
             end
         end
-        Citizen.Wait(time)
+        Wait(time)
     end
 end)
 
@@ -299,7 +292,7 @@ RegisterNUICallback('set', function(data)
         arkasagcam = not arkasagcam
         if arkasagcam then
             RollDownWindow(lastvehicle, 3)
-            QBCore.Functions.Notify("Arka Sağ Cam Açıldı", "info")
+            QBCore.Functions.Notify("Arka Sağ Cam Açıldı", "primary")
         else
             RollUpWindow(lastvehicle, 3)
             QBCore.Functions.Notify("Arka Sol Cam Kapatıldı", "error")
